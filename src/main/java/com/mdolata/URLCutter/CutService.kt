@@ -8,15 +8,10 @@ class CutService(private val properties: Properties) {
         return if (isURLExists(url)) {
             getCutURL(url)
         } else {
-            val uniqueCutURL = getUniqueCutURL()
+            val uniqueCutURL = getUniqueCutURL(properties.attempts)
             db.addNewPair(Pair(url, uniqueCutURL))
             uniqueCutURL
         }
-    }
-
-    private fun getUniqueCutURL(): String {
-        //TODO create uniqueness algorithm
-        return "${properties.base}/${RandomStringGenerator.getRandomString(properties.URLLength)}"
     }
 
     fun isURLExists(url: String): Boolean {
@@ -27,8 +22,23 @@ class CutService(private val properties: Properties) {
         return db.getPairOf(url).cutURL
     }
 
-
     fun isCutURLExists(cutURL: String): Boolean {
         return db.getCutURLExists(cutURL)
+    }
+
+    private fun getUniqueCutURL(maximumAttempts: Int): String {
+
+        // TODO that algorithm is not the best
+        // think about different thread(s) which will add free cutURLs to queue
+        // then this method could easily take first from queue and move on
+
+        if (maximumAttempts == 0){
+            throw RuntimeException("Creating cutURL failed")
+        }
+
+        val cutURL = "${properties.base}/${RandomStringGenerator.getRandomString(properties.URLLength)}"
+        if (isCutURLExists(cutURL))
+            return getUniqueCutURL(maximumAttempts - 1)
+        return cutURL
     }
 }

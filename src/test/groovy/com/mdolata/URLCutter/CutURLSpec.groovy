@@ -11,7 +11,7 @@ class CutURLSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 6,3)
+        properties = new Properties("mdolata.com", 5,3)
         def cutService = new CutService(properties)
 
         publicApi = new PublicApi(cutService)
@@ -62,12 +62,28 @@ class CutURLSpec extends Specification {
     def "should return the different cut url for every unique request"() {
         given:
         def urlTemplate = "http://test"
-
+        def responses = []
         expect:
-        for (int i = 0; i < 10000; i++) {
-            String url = urlTemplate + i
-            def cutURL = publicApi.cutURL(url)
-            assert (publicApi.isCutURLExists(cutURL) == false)
+        for (int i = 0; i < 50000; i++) {
+            def cutURL = publicApi.cutURL(urlTemplate + i)
+            assert !responses.contains(cutURL)
+            responses.add(cutURL)
         }
+    }
+
+    @Ignore
+    def "should throw exception when create is failed"() {
+        given:
+        def urlTemplate = "http://test"
+
+        when:
+        for (int i = 0; i < 238328 + 1; i++) {
+            publicApi.cutURL(urlTemplate + i)
+        }
+
+        then:
+        RuntimeException ex = thrown()
+
+        ex.message == "Creating cutURL failed"
     }
 }
