@@ -1,7 +1,6 @@
 package com.mdolata.URLCutter
 
 class CutService(private val properties: Properties) {
-    private val alphabet = createAlphabet()
 
     val db = PairDAO()
 
@@ -17,7 +16,7 @@ class CutService(private val properties: Properties) {
 
     private fun getUniqueCutURL(): String {
         //TODO create uniqueness algorithm
-        return "${properties.base}/${getRandomString(properties.URLLength)}"
+        return "${properties.base}/${RandomStringGenerator.getRandomString(properties.URLLength)}"
     }
 
     fun isURLExists(url: String): Boolean {
@@ -32,26 +31,4 @@ class CutService(private val properties: Properties) {
     fun isCutURLExists(cutURL: String): Boolean {
         return db.getCutURLExists(cutURL)
     }
-
-    //TODO move getRandomString to its own class
-    private fun getRandomString(length: Int): String {
-        var result = ""
-        for (i in 1..length) {
-            result += alphabet.random()
-        }
-        return result
-    }
-
-    private fun createAlphabet(): ArrayList<Char> {
-        val lowerCase = CharRange('a', 'z').toList()
-        val upperCase = CharRange('A', 'Z').toList()
-        val numbers = CharRange('0', '9').toList()
-        return ArrayList<Char>().apply {
-            addAll(lowerCase)
-            addAll(upperCase)
-            addAll(numbers)
-        }
-    }
-
-
 }
