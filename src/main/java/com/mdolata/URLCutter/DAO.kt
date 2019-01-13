@@ -19,4 +19,8 @@ class PairDAO {
     fun getCutURLExists(cutURL: String): Boolean {
         return list.find { x -> x.cutURL == cutURL } != null
     }
+
+    fun getAll(): List<Pair> {
+        return list.toList()
+    }
 }

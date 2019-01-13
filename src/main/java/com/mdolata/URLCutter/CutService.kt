@@ -41,4 +41,12 @@ class CutService(private val properties: Properties) {
             return getUniqueCutURL(maximumAttempts - 1)
         return cutURL
     }
+
+    fun getAllURLs(): List<String> {
+        return db.getAll().map { pair -> pair.url }
+    }
+
+    fun getAllCutURLs(): List<String> {
+        return db.getAll().map { pair -> pair.cutURL }
+    }
 }

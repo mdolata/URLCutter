@@ -1,8 +1,5 @@
 package com.mdolata.URLCutter
 
-import java.util.*
-
-
 class PublicApi(val cutService: CutService) {
 
     fun isURLExists(url: String): Boolean {
@@ -22,11 +19,11 @@ class PublicApi(val cutService: CutService) {
     }
 
     fun getAllURLs(): List<String> {
-        return listOf()
+        return cutService.getAllURLs()
     }
 
-    fun getAllCutedURLs(): List<String> {
-        return listOf()
+    fun getAllCutURLs(): List<String> {
+        return cutService.getAllCutURLs()
     }
 
     fun getCutURL(url: String): String {
