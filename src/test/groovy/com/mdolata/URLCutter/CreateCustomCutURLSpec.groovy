@@ -30,13 +30,16 @@ class CreateCustomCutURLSpec extends Specification {
         given:
         def customCutURL = "alaMaKota"
         def url = "test"
-        publicApi.cutURL(url)
+        def createdCutURL = publicApi.cutURL(url)
 
         when:
         def createdCustomCutURL = publicApi.createCustomCutURL(url, customCutURL)
 
         then:
         createdCustomCutURL == properties.base + "/" + customCutURL
+
+        and:
+        createdCustomCutURL != createdCutURL
     }
 
     def "should return the same custom cut urls for two the same requests and should not be duplicates"() {
@@ -54,10 +57,10 @@ class CreateCustomCutURLSpec extends Specification {
         expectedCutURL == createdCustomCutURL1
 
         and:
-        publicApi.getAllCutURLs().filter { cutURL -> cutURL == expectedCutURL }.count() == 1
+        publicApi.getAllCutURLs().stream().filter { cutURL -> cutURL == expectedCutURL }.count() == 1
     }
 
-    def "should throw exception not create custom cut url when custom cut url already exists for different url"() {
+    def "should throw exception and not create custom cut url when custom cut url already exists for different url"() {
         given:
         def customCutURL = "alaMaKota"
         def url = "test"
@@ -75,21 +78,24 @@ class CreateCustomCutURLSpec extends Specification {
         ex.message == "cut url already exists"
 
         and:
-        publicApi.getAllCutURLs().filter { cutURL -> cutURL == expectedCutURL }.count() == 1
+        publicApi.getAllCutURLs().stream().filter { cutURL -> cutURL == expectedCutURL }.count() == 1
     }
 
-    def "should throw exception not create custom cut url when simple cut url exists"() {
+    def "should throw exception and not create custom cut url when simple cut url exists"() {
+        def url = "testURL"
         given:
-        def simpleCutURL = publicApi.cutURL("testURL")
+        String simpleCutURL = publicApi.cutURL(url)
+
+        def path = simpleCutURL.split("/")[1]
 
         when:
-        publicApi.createCustomCutURL("test", simpleCutURL)
+        publicApi.createCustomCutURL("test", path)
 
         then:
         RuntimeException ex = thrown()
         ex.message == "cut url already exists"
 
         and:
-        publicApi.getAllCutURLs().filter { cutURL -> cutURL == simpleCutURL }.count() == 1
+        publicApi.getAllCutURLs().stream().filter { cutURL -> cutURL == simpleCutURL }.count() == 1
     }
 }
