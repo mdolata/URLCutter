@@ -14,8 +14,8 @@ class PublicApi(val cutService: CutService) {
         return cutService.cutURL(url)
     }
 
-    fun createCustomCutURL(customUrl: String): String {
-        return ""
+    fun createCustomCutURL(url: String, customUrl: String): String {
+        return cutService.createCustomCutURL(url, customUrl)
     }
 
     fun getAllURLs(): List<String> {
