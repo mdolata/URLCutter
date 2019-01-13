@@ -3,7 +3,7 @@ package com.mdolata.URLCutter
 import spock.lang.Specification
 
 
-class IsCutURLExistsSpec extends Specification {
+class GetCutURLSpec extends Specification {
     def publicApi
 
     void setup() {
@@ -15,24 +15,26 @@ class IsCutURLExistsSpec extends Specification {
 
     def "should return false when cut url does not exists"() {
         given:
-        def cutURL = "testCut"
+        def url = "http://test1"
 
         when:
-        def isCutURLExists = publicApi.isCutURLExists(cutURL)
+        publicApi.getCutURL(url)
 
         then:
-        !isCutURLExists
+        NoSuchElementException ex = thrown()
+
+        ex.message == "Collection contains no element matching the predicate."
     }
 
-    def "should return true when cut url exists"() {
+    def "should cut url true when exists"() {
         given:
         def url = "http://test1"
         def cutURL = publicApi.cutURL(url)
 
         when:
-        def isCutURLExists = publicApi.isCutURLExists(cutURL)
+        def receivedCutURL = publicApi.getCutURL(url)
 
         then:
-        isCutURLExists
+        cutURL == receivedCutURL
     }
 }
