@@ -3,12 +3,12 @@ package com.mdolata.URLCutter
 import spock.lang.Specification
 
 
-class GetAllURLsSpec extends Specification {
+class GetAllCutURLsSpec extends Specification {
 
     def publicApi
 
     void setup() {
-        def properties = new Properties("mdolata.com", 5,3)
+        def properties = new Properties("mdolata.com", 5, 3)
         def cutService = new CutService(properties)
 
         publicApi = new PublicApi(cutService)
@@ -16,7 +16,7 @@ class GetAllURLsSpec extends Specification {
 
     def "should return empty list when nothing has been added"() {
         when:
-        def allURLs = publicApi.getAllURLs()
+        def allURLs = publicApi.getAllCutURLs()
 
         then:
         allURLs.size == 0
@@ -27,7 +27,7 @@ class GetAllURLsSpec extends Specification {
         publicApi.cutURL("test1")
 
         when:
-        def allURLs = publicApi.getAllURLs()
+        def allURLs = publicApi.getAllCutURLs()
 
         then:
         allURLs.size == 1
@@ -39,7 +39,7 @@ class GetAllURLsSpec extends Specification {
         publicApi.cutURL("test1")
 
         when:
-        def allURLs = publicApi.getAllURLs()
+        def allURLs = publicApi.getAllCutURLs()
 
         then:
         allURLs.size == 1
@@ -53,10 +53,9 @@ class GetAllURLsSpec extends Specification {
         }
 
         when:
-        def allURLs = publicApi.getAllURLs()
+        def allURLs = publicApi.getAllCutURLs()
 
         then:
         allURLs.size == 5
     }
-
 }
