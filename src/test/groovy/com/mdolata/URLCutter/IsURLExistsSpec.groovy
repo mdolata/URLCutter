@@ -6,14 +6,12 @@ import spock.lang.Specification
 class IsURLExistsSpec extends Specification {
 
     def publicApi
-    def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5,3)
+        def properties = new Properties("mdolata.com", 5,3)
         def cutService = new CutService(properties)
 
         publicApi = new PublicApi(cutService)
-
     }
 
     def "should return false when url does not exists"() {
