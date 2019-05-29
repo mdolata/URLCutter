@@ -10,9 +10,12 @@ class CreateCustomCutURLSpec extends Specification {
 
     void setup() {
         properties = new Properties("mdolata.com", 5, 3)
-        def cutService = new CutService(properties)
+        def db = new PairDAO()
+        def crudService = new CrudService(db)
+        def randomStringService = new RandomStringService(crudService, properties)
+        def cutService = new CutService(crudService, randomStringService, db, properties)
 
-        publicApi = new PublicApi(cutService)
+        publicApi = new PublicApi(crudService, cutService)
     }
 
     def "should create custom cut url when cut url does not already exists"() {

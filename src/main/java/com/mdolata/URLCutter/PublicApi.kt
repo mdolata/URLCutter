@@ -1,13 +1,13 @@
 package com.mdolata.URLCutter
 
-class PublicApi(val cutService: CutService) {
+class PublicApi(private val crudService: CrudService, private val cutService: CutService) {
 
     fun isURLExists(url: String): Boolean {
-        return cutService.isURLExists(url)
+        return crudService.isURLExists(url)
     }
 
     fun isCutURLExists(cutURL: String): Boolean {
-        return cutService.isCutURLExists(cutURL)
+        return crudService.isCutURLExists(cutURL)
     }
 
     fun cutURL(url: String): String {
@@ -19,14 +19,14 @@ class PublicApi(val cutService: CutService) {
     }
 
     fun getAllURLs(): List<String> {
-        return cutService.getAllURLs()
+        return crudService.getAllURLs()
     }
 
     fun getAllCutURLs(): List<String> {
-        return cutService.getAllCutURLs()
+        return crudService.getAllCutURLs()
     }
 
     fun getCutURL(url: String): String {
-        return cutService.getCutURL(url)
+        return crudService.getCutURL(url)
     }
 }

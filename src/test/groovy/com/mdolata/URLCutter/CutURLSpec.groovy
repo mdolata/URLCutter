@@ -11,10 +11,13 @@ class CutURLSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5,3)
-        def cutService = new CutService(properties)
+        properties = new Properties("mdolata.com", 5, 3)
+        def db = new PairDAO()
+        def crudService = new CrudService(db)
+        def randomStringService = new RandomStringService(crudService, properties)
+        def cutService = new CutService(crudService, randomStringService, db, properties)
 
-        publicApi = new PublicApi(cutService)
+        publicApi = new PublicApi(crudService, cutService)
 
     }
 
@@ -66,8 +69,7 @@ class CutURLSpec extends Specification {
         expect:
         for (int i = 0; i < 50000; i++) {
             def cutURL = publicApi.cutURL(urlTemplate + i)
-            assert !responses.contains(cutURL)
-            responses.add(cutURL)
+            assert responses.add(cutURL)
         }
     }
 
