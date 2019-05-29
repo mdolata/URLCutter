@@ -1,5 +1,10 @@
 package com.mdolata.URLCutter
 
+import com.mdolata.URLCutter.dao.PairDAO
+import com.mdolata.URLCutter.dao.Properties
+import com.mdolata.URLCutter.services.CrudService
+import com.mdolata.URLCutter.services.CutService
+import com.mdolata.URLCutter.services.RandomStringService
 import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll

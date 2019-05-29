@@ -1,4 +1,4 @@
-package com.mdolata.URLCutter
+package com.mdolata.URLCutter.dao
 
 
 data class Properties(val base: String,

@@ -1,5 +1,8 @@
 package com.mdolata.URLCutter
 
+import com.mdolata.URLCutter.services.CrudService
+import com.mdolata.URLCutter.services.CutService
+
 class PublicApi(private val crudService: CrudService, private val cutService: CutService) {
 
     fun isURLExists(url: String): Boolean {

@@ -1,5 +1,7 @@
-package com.mdolata.URLCutter
+package com.mdolata.URLCutter.services
 
+import com.mdolata.URLCutter.dao.Properties
+import com.mdolata.URLCutter.utils.RandomStringGenerator
 import com.mdolata.URLCutter.utils.UrlFormatter
 
 

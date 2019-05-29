@@ -1,5 +1,8 @@
-package com.mdolata.URLCutter
+package com.mdolata.URLCutter.services
 
+import com.mdolata.URLCutter.dao.Pair
+import com.mdolata.URLCutter.dao.PairDAO
+import com.mdolata.URLCutter.dao.Properties
 import com.mdolata.URLCutter.utils.UrlFormatter
 
 

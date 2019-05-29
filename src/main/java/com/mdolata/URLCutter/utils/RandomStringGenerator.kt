@@ -1,4 +1,4 @@
-package com.mdolata.URLCutter
+package com.mdolata.URLCutter.utils
 
 
 object RandomStringGenerator {
