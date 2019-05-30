@@ -13,7 +13,7 @@ class RandomStringService (private val crudService: CrudService, private val pro
         // think about different thread(s) which will add free cutURLs to queue
         // then this method could easily take first from queue and move on
 
-        if (maximumAttempts == 0) {
+        if (maximumAttempts < 1) {
             throw RuntimeException("Creating cutURL failed")
         }
 
