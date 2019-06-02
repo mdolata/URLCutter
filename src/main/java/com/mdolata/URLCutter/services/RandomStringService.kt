@@ -5,7 +5,9 @@ import com.mdolata.URLCutter.utils.RandomStringGenerator
 import com.mdolata.URLCutter.utils.UrlFormatter
 
 
-class RandomStringService (private val crudService: CrudService, private val properties: Properties) {
+class RandomStringService(private val crudService: CrudService,
+                          private val randomStringGenerator: RandomStringGenerator,
+                          private val properties: Properties) {
 
     fun getUniqueCutURL(maximumAttempts: Int): String {
 
@@ -17,7 +19,7 @@ class RandomStringService (private val crudService: CrudService, private val pro
             throw RuntimeException("Creating cutURL failed")
         }
 
-        val path = RandomStringGenerator.getRandomString(properties.URLLength)
+        val path = randomStringGenerator.getRandomString(properties.URLLength)
         val cutURL = UrlFormatter.getCutURLFromPath(properties.base, path)
         if (crudService.isCutURLExists(cutURL))
             return getUniqueCutURL(maximumAttempts - 1)

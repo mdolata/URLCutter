@@ -2,6 +2,7 @@ package com.mdolata.URLCutter.services
 
 import com.mdolata.URLCutter.dao.PairDAO
 import com.mdolata.URLCutter.dao.Properties
+import com.mdolata.URLCutter.utils.RandomStringGenerator
 import net.bytebuddy.ByteBuddy
 import net.bytebuddy.agent.ByteBuddyAgent
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy
@@ -23,7 +24,7 @@ class RandomStringServiceTest2 extends Specification {
 
         crudService = new CrudService(pairDao)
 
-        randomStringService = new RandomStringService(crudService, properties)
+        randomStringService = new RandomStringService(crudService, new RandomStringGenerator(), properties)
     }
 
     private void redefineMethodCrudService(String methodName, boolean returnedValue) {

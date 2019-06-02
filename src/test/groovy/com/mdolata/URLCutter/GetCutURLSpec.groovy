@@ -5,6 +5,7 @@ import com.mdolata.URLCutter.dao.Properties
 import com.mdolata.URLCutter.services.CrudService
 import com.mdolata.URLCutter.services.CutService
 import com.mdolata.URLCutter.services.RandomStringService
+import com.mdolata.URLCutter.utils.RandomStringGenerator
 import spock.lang.Specification
 
 
@@ -15,7 +16,8 @@ class GetCutURLSpec extends Specification {
         def properties = new Properties("mdolata.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
-        def randomStringService = new RandomStringService(crudService, properties)
+        def stringGenerator = new RandomStringGenerator();
+        def randomStringService = new RandomStringService(crudService, stringGenerator, properties)
         def cutService = new CutService(crudService, randomStringService, db, properties)
 
         publicApi = new PublicApi(crudService, cutService)
