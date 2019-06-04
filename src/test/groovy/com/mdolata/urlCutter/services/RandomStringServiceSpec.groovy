@@ -1,6 +1,7 @@
 package com.mdolata.urlCutter.services
 
 import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
 import com.mdolata.urlCutter.utils.RandomStringGenerator
 import net.bytebuddy.ByteBuddy
 import net.bytebuddy.agent.ByteBuddyAgent

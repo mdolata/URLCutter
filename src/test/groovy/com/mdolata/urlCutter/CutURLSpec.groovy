@@ -1,6 +1,7 @@
 package com.mdolata.urlCutter
 
 import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
 import com.mdolata.urlCutter.services.CrudService
 import com.mdolata.urlCutter.services.CutService
 import com.mdolata.urlCutter.services.RandomStringService
@@ -66,6 +67,9 @@ class CutURLSpec extends Specification {
         expect:
         cutUrl1 != cutUrl2
     }
+
+    @Ignore
+    def "should not return custom create cut url when url exists in system"(){}
 
     @Ignore
     def "should return the different cut url for every unique request"() {

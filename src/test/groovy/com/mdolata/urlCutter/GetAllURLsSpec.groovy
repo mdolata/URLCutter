@@ -1,6 +1,7 @@
 package com.mdolata.urlCutter
 
 import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
 import com.mdolata.urlCutter.services.CrudService
 import com.mdolata.urlCutter.services.CutService
 import com.mdolata.urlCutter.services.RandomStringService
