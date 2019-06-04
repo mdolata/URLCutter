@@ -1,8 +1,7 @@
-package com.mdolata.URLCutter.services
+package com.mdolata.urlCutter.services
 
-import com.mdolata.URLCutter.dao.PairDAO
-import com.mdolata.URLCutter.dao.Properties
-import com.mdolata.URLCutter.utils.RandomStringGenerator
+import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.utils.RandomStringGenerator
 import net.bytebuddy.ByteBuddy
 import net.bytebuddy.agent.ByteBuddyAgent
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy
@@ -14,7 +13,7 @@ import spock.lang.Unroll
 import static net.bytebuddy.matcher.ElementMatchers.named
 
 
-class RandomStringServiceTest extends Specification {
+class RandomStringServiceSpec extends Specification {
 
     @Subject
     def randomStringService

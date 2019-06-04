@@ -1,9 +1,9 @@
-package com.mdolata.URLCutter.services
+package com.mdolata.urlCutter.services
 
-import com.mdolata.URLCutter.dao.Pair
-import com.mdolata.URLCutter.dao.PairDAO
-import com.mdolata.URLCutter.dao.Properties
-import com.mdolata.URLCutter.utils.UrlFormatter
+import com.mdolata.urlCutter.dao.Pair
+import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
+import com.mdolata.urlCutter.utils.UrlFormatter
 
 
 class CutService(private val crudService: CrudService,

@@ -1,15 +1,14 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter
 
-import com.mdolata.URLCutter.dao.PairDAO
-import com.mdolata.URLCutter.dao.Properties
-import com.mdolata.URLCutter.services.CrudService
-import com.mdolata.URLCutter.services.CutService
-import com.mdolata.URLCutter.services.RandomStringService
-import com.mdolata.URLCutter.utils.RandomStringGenerator
+import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.services.CrudService
+import com.mdolata.urlCutter.services.CutService
+import com.mdolata.urlCutter.services.RandomStringService
+import com.mdolata.urlCutter.utils.RandomStringGenerator
 import spock.lang.Specification
 
 
-class GetAllCutURLsSpec extends Specification {
+class GetAllURLsSpec extends Specification {
 
     def publicApi
 
@@ -26,7 +25,7 @@ class GetAllCutURLsSpec extends Specification {
 
     def "should return empty list when nothing has been added"() {
         when:
-        def allURLs = publicApi.getAllCutURLs()
+        def allURLs = publicApi.getAllURLs()
 
         then:
         allURLs.size == 0
@@ -37,7 +36,7 @@ class GetAllCutURLsSpec extends Specification {
         publicApi.cutURL("test1")
 
         when:
-        def allURLs = publicApi.getAllCutURLs()
+        def allURLs = publicApi.getAllURLs()
 
         then:
         allURLs.size == 1
@@ -49,7 +48,7 @@ class GetAllCutURLsSpec extends Specification {
         publicApi.cutURL("test1")
 
         when:
-        def allURLs = publicApi.getAllCutURLs()
+        def allURLs = publicApi.getAllURLs()
 
         then:
         allURLs.size == 1
@@ -63,9 +62,10 @@ class GetAllCutURLsSpec extends Specification {
         }
 
         when:
-        def allURLs = publicApi.getAllCutURLs()
+        def allURLs = publicApi.getAllURLs()
 
         then:
         allURLs.size == 5
     }
+
 }

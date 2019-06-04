@@ -1,4 +1,4 @@
-package com.mdolata.URLCutter.dao
+package com.mdolata.urlCutter.dao
 
 
 class PairDAO {

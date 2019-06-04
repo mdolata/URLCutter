@@ -1,7 +1,7 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter
 
-import com.mdolata.URLCutter.services.CrudService
-import com.mdolata.URLCutter.services.CutService
+import com.mdolata.urlCutter.services.CrudService
+import com.mdolata.urlCutter.services.CutService
 
 class PublicApi(private val crudService: CrudService, private val cutService: CutService) {
 

@@ -1,8 +1,8 @@
-package com.mdolata.URLCutter.services
+package com.mdolata.urlCutter.services
 
-import com.mdolata.URLCutter.dao.Properties
-import com.mdolata.URLCutter.utils.RandomStringGenerator
-import com.mdolata.URLCutter.utils.UrlFormatter
+import com.mdolata.urlCutter.dao.Properties
+import com.mdolata.urlCutter.utils.RandomStringGenerator
+import com.mdolata.urlCutter.utils.UrlFormatter
 
 
 class RandomStringService(private val crudService: CrudService,

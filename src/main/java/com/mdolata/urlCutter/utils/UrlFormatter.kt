@@ -1,4 +1,4 @@
-package com.mdolata.URLCutter.utils
+package com.mdolata.urlCutter.utils
 
 
 object UrlFormatter {

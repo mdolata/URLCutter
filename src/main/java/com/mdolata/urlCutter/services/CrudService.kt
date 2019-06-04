@@ -1,6 +1,6 @@
-package com.mdolata.URLCutter.services
+package com.mdolata.urlCutter.services
 
-import com.mdolata.URLCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.PairDAO
 
 
 class CrudService(private val db: PairDAO) {
