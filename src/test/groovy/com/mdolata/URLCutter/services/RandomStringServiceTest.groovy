@@ -8,21 +8,23 @@ import net.bytebuddy.agent.ByteBuddyAgent
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy
 import net.bytebuddy.implementation.FixedValue
 import spock.lang.Specification
+import spock.lang.Subject
 import spock.lang.Unroll
 
 import static net.bytebuddy.matcher.ElementMatchers.named
 
 
-class RandomStringServiceTest2 extends Specification {
+class RandomStringServiceTest extends Specification {
 
+    @Subject
     def randomStringService
-    def crudService
+    def properties
 
     void setup() {
-        def properties = new Properties("mdolata.com", 5, 3)
+        properties = new Properties("mdolata.com", 5, 3)
         def pairDao = new PairDAO()
 
-        crudService = new CrudService(pairDao)
+        def crudService = new CrudService(pairDao)
 
         randomStringService = new RandomStringService(crudService, new RandomStringGenerator(), properties)
     }
@@ -68,13 +70,14 @@ class RandomStringServiceTest2 extends Specification {
         setup:
         def methodName = "isCutURLExists"
         def returnedValue = false
+        def expectedCutUrlSize = "/".size() + properties.base.size() + properties.URLLength
         redefineMethodCrudService(methodName, returnedValue)
 
         when:
         def result = randomStringService.getUniqueCutURL(attempts)
 
         then:
-        result.size() == 17
+        result.size() == expectedCutUrlSize
 
         where:
         no | attempts
