@@ -26,14 +26,13 @@ class GetCutURLSpec extends Specification {
     def "should return false when cut url does not exists"() {
         given:
         def url = "http://test1"
+        def expectedDefaultCutUrl = "empty"
 
         when:
-        publicApi.getCutURL(url)
+        def result = publicApi.getCutURL(url)
 
         then:
-        NoSuchElementException ex = thrown()
-
-        ex.message == "Collection contains no element matching the predicate."
+        result == expectedDefaultCutUrl
     }
 
     def "should cut url true when exists"() {

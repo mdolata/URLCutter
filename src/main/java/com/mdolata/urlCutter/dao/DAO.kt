@@ -12,8 +12,8 @@ class PairDAO {
         return list.find { x -> x.url == url } != null
     }
 
-    fun getPairOf(url: String): Pair {
-        return list.first { x -> x.url == url }
+    fun getPairOf(url: String): Pair? {
+        return list.find { x -> x.url == url }
     }
 
     fun getCutURLExists(cutURL: String): Boolean {
