@@ -1,4 +1,4 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter
 
 import spock.lang.Specification
 

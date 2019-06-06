@@ -1,5 +1,11 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter
 
+import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
+import com.mdolata.urlCutter.services.CrudService
+import com.mdolata.urlCutter.services.CutService
+import com.mdolata.urlCutter.services.RandomStringService
+import com.mdolata.urlCutter.utils.RandomStringGenerator
 import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -11,10 +17,14 @@ class CutURLSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5,3)
-        def cutService = new CutService(properties)
+        properties = new Properties("mdolata.com", 5, 3)
+        def db = new PairDAO()
+        def crudService = new CrudService(db)
+        def stringGenerator = new RandomStringGenerator();
+        def randomStringService = new RandomStringService(crudService, stringGenerator, properties)
+        def cutService = new CutService(crudService, randomStringService, db, properties)
 
-        publicApi = new PublicApi(cutService)
+        publicApi = new PublicApi(crudService, cutService)
 
     }
 
@@ -59,6 +69,9 @@ class CutURLSpec extends Specification {
     }
 
     @Ignore
+    def "should not return custom create cut url when url exists in system"(){}
+
+    @Ignore
     def "should return the different cut url for every unique request"() {
         given:
         def urlTemplate = "http://test"
@@ -66,8 +79,7 @@ class CutURLSpec extends Specification {
         expect:
         for (int i = 0; i < 50000; i++) {
             def cutURL = publicApi.cutURL(urlTemplate + i)
-            assert !responses.contains(cutURL)
-            responses.add(cutURL)
+            assert responses.add(cutURL)
         }
     }
 

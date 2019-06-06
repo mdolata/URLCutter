@@ -1,5 +1,12 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter
 
+import com.mdolata.urlCutter.dao.PairDAO
+import com.mdolata.urlCutter.dao.Properties
+import com.mdolata.urlCutter.services.CrudService
+import com.mdolata.urlCutter.services.CutService
+import com.mdolata.urlCutter.services.RandomStringService
+import com.mdolata.urlCutter.utils.RandomStringGenerator
+import spock.lang.Ignore
 import spock.lang.Specification
 
 
@@ -10,9 +17,13 @@ class CreateCustomCutURLSpec extends Specification {
 
     void setup() {
         properties = new Properties("mdolata.com", 5, 3)
-        def cutService = new CutService(properties)
+        def db = new PairDAO()
+        def crudService = new CrudService(db)
+        def stringGenerator = new RandomStringGenerator();
+        def randomStringService = new RandomStringService(crudService, stringGenerator, properties)
+        def cutService = new CutService(crudService, randomStringService, db, properties)
 
-        publicApi = new PublicApi(cutService)
+        publicApi = new PublicApi(crudService, cutService)
     }
 
     def "should create custom cut url when cut url does not already exists"() {

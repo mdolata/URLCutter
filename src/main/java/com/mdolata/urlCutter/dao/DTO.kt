@@ -1,6 +1,7 @@
-package com.mdolata.URLCutter
+package com.mdolata.urlCutter.dao
 
-
+//TODO
+//load properties from resources
 data class Properties(val base: String,
                       val URLLength: Int = 6,
                       val attempts: Int = 3)
