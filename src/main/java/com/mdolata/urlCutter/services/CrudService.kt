@@ -16,11 +16,11 @@ class CrudService(private val db: PairDAO) {
     }
 
     fun isURLExists(url: String): Boolean {
-        return db.isURLExists(url)
+        return db.getUrl(url).isNotEmpty()
     }
 
     fun isCutURLExists(cutURL: String): Boolean {
-        return db.getCutURLExists(cutURL)
+        return db.getCutURL(cutURL).isNotEmpty()
     }
 
     fun getAllURLs(): List<String> {

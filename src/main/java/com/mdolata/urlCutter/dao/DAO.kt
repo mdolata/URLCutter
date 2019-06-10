@@ -8,16 +8,18 @@ class PairDAO {
         list.add(Pair(url, cutURL))
     }
 
-    fun isURLExists(url: String): Boolean {
-        return list.find { x -> x.url == url } != null
-    }
-
+    // TODO
+    // should be use Option
     fun getPairOf(url: String): Pair? {
         return list.find { x -> x.url == url }
     }
 
-    fun getCutURLExists(cutURL: String): Boolean {
-        return list.find { x -> x.cutURL == cutURL } != null
+    fun getUrl(url: String): String {
+        return list.find { x -> x.url == url }?.url ?: ""
+    }
+
+    fun getCutURL(cutURL: String): String {
+        return list.find { x -> x.cutURL == cutURL }?.cutURL ?: ""
     }
 
     fun getAll(): List<Pair> {
