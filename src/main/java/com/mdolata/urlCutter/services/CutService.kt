@@ -27,7 +27,7 @@ class CutService(private val crudService: CrudService,
         val cutURL = UrlFormatter.getCutURLFromPath(properties.base, customUrl)
 
         val isCutURLExists = crudService.isCutURLExists(cutURL)
-        val isPairExists = isPairExists(url, cutURL)
+        val isPairExists = crudService.isPairExists(url, cutURL)
 
         if (isCutURLExists) {
             if (!isPairExists)
@@ -36,10 +36,5 @@ class CutService(private val crudService: CrudService,
             db.addNewPair(Pair(url, cutURL))
         }
         return cutURL
-    }
-
-
-    private fun isPairExists(url: String, cutURL: String): Boolean {
-        return db.getAll().count { pair -> pair.url == url && pair.cutURL == cutURL } == 1
     }
 }
