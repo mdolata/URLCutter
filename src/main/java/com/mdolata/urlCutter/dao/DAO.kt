@@ -4,8 +4,8 @@ package com.mdolata.urlCutter.dao
 class PairDAO {
     private val list = ArrayList<Pair>()
 
-    fun addNewPair(pair: Pair){
-        list.add(pair)
+    fun addNewPair(url: String, cutURL: String) {
+        list.add(Pair(url, cutURL))
     }
 
     fun isURLExists(url: String): Boolean {

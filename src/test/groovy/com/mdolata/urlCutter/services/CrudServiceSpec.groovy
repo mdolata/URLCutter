@@ -116,7 +116,7 @@ class CrudServiceSpec extends Specification {
     @Unroll
     def "should return list of n urls when n element was added"() {
         given:
-        for(int i in 1..numberOfAddedRecords)
+        for (int i in 1..numberOfAddedRecords)
             addNewRecord("dummy", "dummy")
 
         when:
@@ -144,7 +144,7 @@ class CrudServiceSpec extends Specification {
     @Unroll
     def "should return list of  n cutUrls when n element was added"() {
         given:
-        for(int i in 1..numberOfAddedRecords)
+        for (int i in 1..numberOfAddedRecords)
             addNewRecord("dummy", "dummy")
 
         when:
@@ -203,6 +203,6 @@ class CrudServiceSpec extends Specification {
     }
 
     private void addNewRecord(String url, String cutUrl) {
-        db.addNewPair(new Pair(url, cutUrl))
+        db.addNewPair(url, cutUrl)
     }
 }

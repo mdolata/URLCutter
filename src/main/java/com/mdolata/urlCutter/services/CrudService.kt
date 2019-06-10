@@ -4,8 +4,9 @@ import com.mdolata.urlCutter.dao.PairDAO
 
 class CrudService(private val db: PairDAO) {
 
-    //TODO
-    //move crud operations from CutService and test them
+    fun createNewPair(url: String, cutURL: String) {
+        db.addNewPair(url, cutURL)
+    }
 
     //TODO
     // should return object with error nor string
