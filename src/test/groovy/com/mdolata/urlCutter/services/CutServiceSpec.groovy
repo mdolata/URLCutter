@@ -10,16 +10,15 @@ class CutServiceSpec extends Specification {
 
     @Subject
     def cutService
-    def pairDao
     def properties
 
     void setup() {
         properties = new Properties("mdolata.com", 5, 3)
-        pairDao = new PairDAO()
+        def pairDao = new PairDAO()
         def crudService = new CrudService(pairDao)
         def randomStringService = new RandomStringService(crudService, new RandomStringGenerator(), properties)
 
-        cutService = new CutService(crudService, randomStringService, pairDao, properties)
+        cutService = new CutService(crudService, randomStringService, properties)
     }
 
     def "should return the same cut url for for two same calls"(){

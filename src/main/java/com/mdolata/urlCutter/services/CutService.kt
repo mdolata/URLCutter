@@ -1,13 +1,11 @@
 package com.mdolata.urlCutter.services
 
-import com.mdolata.urlCutter.dao.PairDAO
 import com.mdolata.urlCutter.dao.Properties
 import com.mdolata.urlCutter.utils.UrlFormatter
 
 
 class CutService(private val crudService: CrudService,
                  private val randomStringService: RandomStringService,
-                 private val db: PairDAO,
                  private val properties: Properties) {
 
 
