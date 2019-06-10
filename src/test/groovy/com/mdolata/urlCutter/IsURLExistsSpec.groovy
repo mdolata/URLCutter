@@ -17,9 +17,9 @@ class IsURLExistsSpec extends Specification {
         def properties = new Properties("mdolata.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
-        def stringGenerator = new RandomStringGenerator();
+        def stringGenerator = new RandomStringGenerator()
         def randomStringService = new RandomStringService(crudService, stringGenerator, properties)
-        def cutService = new CutService(crudService, randomStringService, db, properties)
+        def cutService = new CutService(crudService, randomStringService, properties)
 
         publicApi = new PublicApi(crudService, cutService)
     }

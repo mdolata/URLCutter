@@ -116,7 +116,7 @@ class CrudServiceSpec extends Specification {
     @Unroll
     def "should return list of n urls when n element was added"() {
         given:
-        for(int i in 1..numberOfAddedRecords)
+        for (int i in 1..numberOfAddedRecords)
             addNewRecord("dummy", "dummy")
 
         when:
@@ -144,7 +144,7 @@ class CrudServiceSpec extends Specification {
     @Unroll
     def "should return list of  n cutUrls when n element was added"() {
         given:
-        for(int i in 1..numberOfAddedRecords)
+        for (int i in 1..numberOfAddedRecords)
             addNewRecord("dummy", "dummy")
 
         when:
@@ -161,8 +161,48 @@ class CrudServiceSpec extends Specification {
         4  | 65
     }
 
+    def "should return true when a pair exists"() {
+        given:
+        def url = "dummy"
+        def cutUrl = "dummy"
+        addNewRecord(url, cutUrl)
+
+        when:
+        def result = crudService.isPairExists(url, cutUrl)
+
+        then:
+        result == true
+    }
+
+    def "should return false when url exists without pair with cutUrl"() {
+        given:
+        def url = "dummy"
+        def cutUrl = "dummy"
+        def notExistsCutUrl = "dummyNotExists"
+        addNewRecord(url, cutUrl)
+
+        when:
+        def result = crudService.isPairExists(url, notExistsCutUrl)
+
+        then:
+        result == false
+    }
+
+    def "should return false when cutUrl exists without pair with url"() {
+        given:
+        def url = "dummy"
+        def cutUrl = "dummy"
+        def notExistsUrl = "dummyNotExists"
+        addNewRecord(url, cutUrl)
+
+        when:
+        def result = crudService.isPairExists(notExistsUrl, cutUrl)
+
+        then:
+        result == false
+    }
 
     private void addNewRecord(String url, String cutUrl) {
-        db.addNewPair(new Pair(url, cutUrl))
+        db.addNewPair(url, cutUrl)
     }
 }

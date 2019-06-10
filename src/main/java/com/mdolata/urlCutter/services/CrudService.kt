@@ -4,11 +4,8 @@ import com.mdolata.urlCutter.dao.PairDAO
 
 class CrudService(private val db: PairDAO) {
 
-    //TODO
-    //move crud operations from CutService and test them
-
-    fun isURLExists(url: String): Boolean {
-        return db.isURLExists(url)
+    fun createNewPair(url: String, cutURL: String) {
+        db.addNewPair(url, cutURL)
     }
 
     //TODO
@@ -16,6 +13,10 @@ class CrudService(private val db: PairDAO) {
     // either?
     fun getCutURL(url: String): String {
         return db.getPairOf(url)?.cutURL ?: "empty"
+    }
+
+    fun isURLExists(url: String): Boolean {
+        return db.isURLExists(url)
     }
 
     fun isCutURLExists(cutURL: String): Boolean {
@@ -28,5 +29,9 @@ class CrudService(private val db: PairDAO) {
 
     fun getAllCutURLs(): List<String> {
         return db.getAll().map { pair -> pair.cutURL }
+    }
+
+    fun isPairExists(url: String, cutURL: String): Boolean {
+        return (db.getPairOf(url) ?: return false).cutURL == cutURL
     }
 }
