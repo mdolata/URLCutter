@@ -21,7 +21,7 @@ class RandomStringServiceSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5, 3)
+        properties = new Properties("dummy.address.com", 5, 3)
         def pairDao = new PairDAO()
 
         def crudService = new CrudService(pairDao)
@@ -29,7 +29,7 @@ class RandomStringServiceSpec extends Specification {
         randomStringService = new RandomStringService(crudService, new RandomStringGenerator(), properties)
     }
 
-    private void redefineMethodCrudService(String methodName, boolean returnedValue) {
+    private static void redefineMethodCrudService(String methodName, boolean returnedValue) {
         ByteBuddyAgent.install()
         new ByteBuddy()
                 .redefine(CrudService)

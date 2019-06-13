@@ -16,7 +16,7 @@ class CreateCustomCutURLSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5, 3)
+        properties = new Properties("dummy.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
         def stringGenerator = new RandomStringGenerator()
@@ -28,7 +28,7 @@ class CreateCustomCutURLSpec extends Specification {
 
     def "should create custom cut url when cut url does not already exists"() {
         given:
-        def customCutURL = "alaMaKota"
+        def customCutURL = "simpleTest"
 
         when:
         def createdCustomCutURL = publicApi.createCustomCutURL("test", customCutURL)
@@ -39,7 +39,7 @@ class CreateCustomCutURLSpec extends Specification {
 
     def "should create new custom cut url when url exists"() {
         given:
-        def customCutURL = "alaMaKota"
+        def customCutURL = "simpleTest"
         def url = "test"
         def createdCutURL = publicApi.cutURL(url)
 
@@ -55,7 +55,7 @@ class CreateCustomCutURLSpec extends Specification {
 
     def "should return the same custom cut urls for two the same requests and should not be duplicates"() {
         given:
-        def customCutURL = "alaMaKota"
+        def customCutURL = "simpleTest"
         def url = "test"
         def expectedCutURL = properties.base + "/" + customCutURL
 
@@ -73,7 +73,7 @@ class CreateCustomCutURLSpec extends Specification {
 
     def "should throw exception and not create custom cut url when custom cut url already exists for different url"() {
         given:
-        def customCutURL = "alaMaKota"
+        def customCutURL = "simpleTest"
         def url = "test"
         def expectedCutURL = properties.base + "/" + customCutURL
 
