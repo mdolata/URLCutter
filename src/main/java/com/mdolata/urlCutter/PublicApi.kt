@@ -6,31 +6,17 @@ import com.mdolata.urlCutter.services.CutService
 
 class PublicApi(private val crudService: CrudService, private val cutService: CutService) {
 
-    fun isURLExists(url: String): Boolean {
-        return crudService.isURLExists(url)
-    }
+    fun isURLExists(url: String): Boolean = crudService.isURLExists(url)
 
-    fun isCutURLExists(cutURL: String): Boolean {
-        return crudService.isCutURLExists(cutURL)
-    }
+    fun isCutURLExists(cutURL: String): Boolean = crudService.isCutURLExists(cutURL)
 
-    fun cutURL(url: String): String {
-        return cutService.cutURL(url)
-    }
+    fun cutURL(url: String): String = cutService.cutURL(url)
 
-    fun createCustomCutURL(url: String, customUrl: String): String {
-        return cutService.createCustomCutURL(url, customUrl)
-    }
+    fun createCustomCutURL(url: String, customUrl: String): String = cutService.createCustomCutURL(url, customUrl)
 
-    fun getAllURLs(): List<String> {
-        return crudService.getAllURLs()
-    }
+    fun getAllURLs(): List<String> = crudService.getAllURLs()
 
-    fun getAllCutURLs(): List<String> {
-        return crudService.getAllCutURLs()
-    }
+    fun getAllCutURLs(): List<String> = crudService.getAllCutURLs()
 
-    fun getCutURL(url: String): Option<String> {
-        return crudService.getCutURL(url)
-    }
+    fun getCutURL(url: String): Option<String> = crudService.getCutURL(url)
 }
