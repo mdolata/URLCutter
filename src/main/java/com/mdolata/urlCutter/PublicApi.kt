@@ -4,6 +4,8 @@ import arrow.core.Option
 import com.mdolata.urlCutter.services.CrudService
 import com.mdolata.urlCutter.services.CutService
 
+//TODO
+//add test of api in kotlin
 class PublicApi(private val crudService: CrudService, private val cutService: CutService) {
 
     fun isURLExists(url: String): Boolean = crudService.isURLExists(url)
