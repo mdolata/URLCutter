@@ -1,5 +1,6 @@
 package com.mdolata.urlCutter.services
 
+import arrow.core.Option
 import com.mdolata.urlCutter.dao.PairDAO
 
 class CrudService(private val db: PairDAO) {
@@ -11,8 +12,9 @@ class CrudService(private val db: PairDAO) {
     //TODO
     // should return object with error nor string
     // either?
-    fun getCutURL(url: String): String {
-        return db.getPairOf(url)?.cutURL ?: ""
+    fun getCutURL(url: String): Option<String> {
+        return db.getPairOf(url)
+                .map { pair -> pair.cutURL }
     }
 
     fun isURLExists(url: String): Boolean {
@@ -32,6 +34,8 @@ class CrudService(private val db: PairDAO) {
     }
 
     fun isPairExists(url: String, cutURL: String): Boolean {
-        return (db.getPairOf(url) ?: return false).cutURL == cutURL
+        return db.getPairOf(url)
+                .filter { pair -> pair.cutURL == cutURL }
+                .isDefined()
     }
 }

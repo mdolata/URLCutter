@@ -1,5 +1,6 @@
 package com.mdolata.urlCutter
 
+import arrow.core.Option
 import com.mdolata.urlCutter.services.CrudService
 import com.mdolata.urlCutter.services.CutService
 
@@ -29,7 +30,7 @@ class PublicApi(private val crudService: CrudService, private val cutService: Cu
         return crudService.getAllCutURLs()
     }
 
-    fun getCutURL(url: String): String {
+    fun getCutURL(url: String): Option<String> {
         return crudService.getCutURL(url)
     }
 }

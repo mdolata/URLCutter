@@ -1,6 +1,6 @@
 package com.mdolata.urlCutter.services
 
-import com.mdolata.urlCutter.dao.Pair
+import arrow.core.Option
 import com.mdolata.urlCutter.dao.PairDAO
 import spock.lang.Specification
 import spock.lang.Subject
@@ -52,19 +52,19 @@ class CrudServiceSpec extends Specification {
         def result = crudService.getCutURL(url)
 
         then:
-        result == expected
+        result.toString() == "Some($expected)"
     }
 
-    def "should return string empty when url does not exist"() {
+    def "should return string empty Option when url does not exist"() {
         given:
         def url = "www.test.com"
-        def expected = ""
+        def expected = "None"
 
         when:
         def result = crudService.getCutURL(url)
 
         then:
-        result == expected
+        result.toString() == expected
     }
 
     def "should return true when cut url exists"() {
