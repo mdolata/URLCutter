@@ -1,6 +1,7 @@
 package com.mdolata.urlCutter.dao
 
 import arrow.core.Option
+import arrow.core.toOption
 
 class PairDAO {
     private val list = ArrayList<Pair>()
@@ -9,18 +10,20 @@ class PairDAO {
         list.add(Pair(url, cutURL))
     }
 
-    // TODO
-    // should be use Option
     fun getPairOf(url: String): Option<Pair> {
         return Option.fromNullable(list.find { x -> x.url == url })
     }
 
-    fun getUrl(url: String): String {
-        return list.find { x -> x.url == url }?.url ?: ""
+    fun getUrl(url: String): Option<String> {
+        return list.find { x -> x.url == url }
+                .toOption()
+                .map { pair -> pair.url }
     }
 
-    fun getCutURL(cutURL: String): String {
-        return list.find { x -> x.cutURL == cutURL }?.cutURL ?: ""
+    fun getCutURL(cutURL: String): Option<String> {
+        return list.find { x -> x.cutURL == cutURL }
+                .toOption()
+                .map { pair -> pair.cutURL }
     }
 
     fun getAll(): List<Pair> {
