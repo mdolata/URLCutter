@@ -26,7 +26,7 @@ class GetCutURLSpec extends Specification {
     def "should return false when cut url does not exists"() {
         given:
         def url = "http://test1"
-        def expectedDefaultCutUrl = "empty"
+        def expectedDefaultCutUrl = ""
 
         when:
         def result = publicApi.getCutURL(url)

@@ -12,7 +12,7 @@ class CrudService(private val db: PairDAO) {
     // should return object with error nor string
     // either?
     fun getCutURL(url: String): String {
-        return db.getPairOf(url)?.cutURL ?: "empty"
+        return db.getPairOf(url)?.cutURL ?: ""
     }
 
     fun isURLExists(url: String): Boolean {

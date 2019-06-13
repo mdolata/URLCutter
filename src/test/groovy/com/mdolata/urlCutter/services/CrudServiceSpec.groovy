@@ -58,7 +58,7 @@ class CrudServiceSpec extends Specification {
     def "should return string empty when url does not exist"() {
         given:
         def url = "www.test.com"
-        def expected = "empty"
+        def expected = ""
 
         when:
         def result = crudService.getCutURL(url)
