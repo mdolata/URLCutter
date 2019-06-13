@@ -11,13 +11,12 @@ class CutService(private val crudService: CrudService,
 
 
     fun cutURL(url: String): String {
-        return if (crudService.isURLExists(url)) {
-            crudService.getCutURL(url).getOrElse { "" }
-        } else {
-            val uniqueCutURL = randomStringService.getUniqueCutURL(properties.attempts)
-            crudService.createNewPair(url, uniqueCutURL)
-            uniqueCutURL
-        }
+        return crudService.getCutURL(url)
+                .getOrElse {
+                    val uniqueCutURL = randomStringService.getUniqueCutURL(properties.attempts)
+                    crudService.createNewPair(url, uniqueCutURL)
+                    uniqueCutURL
+                }
     }
 
     fun createCustomCutURL(url: String, customUrl: String): String {
