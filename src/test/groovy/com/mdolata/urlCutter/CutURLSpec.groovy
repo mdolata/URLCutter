@@ -17,7 +17,7 @@ class CutURLSpec extends Specification {
     def properties
 
     void setup() {
-        properties = new Properties("mdolata.com", 5, 3)
+        properties = new Properties("dummy.address.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
         def stringGenerator = new RandomStringGenerator()
@@ -39,10 +39,10 @@ class CutURLSpec extends Specification {
 
 
         where:
-        no | url
-        1  | "http://test"
-        2  | "https://test1234"
-        3  | "https://test/test1/test2"
+        no  | url
+        "1" | "http://test"
+        "2" | "https://test1234"
+        "3" | "https://test/test1/test2"
     }
 
     def "should return the same cut url for the same requested urls"() {
@@ -69,7 +69,7 @@ class CutURLSpec extends Specification {
     }
 
     @Ignore
-    def "should not return custom create cut url when url exists in system"(){}
+    def "should not return custom create cut url when url exists in system"() {}
 
     @Ignore
     def "should return the different cut url for every unique request"() {

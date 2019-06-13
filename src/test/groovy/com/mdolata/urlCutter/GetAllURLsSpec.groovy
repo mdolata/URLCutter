@@ -14,7 +14,7 @@ class GetAllURLsSpec extends Specification {
     def publicApi
 
     void setup() {
-        def properties = new Properties("mdolata.com", 5, 3)
+        def properties = new Properties("dummy.address.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
         def stringGenerator = new RandomStringGenerator()

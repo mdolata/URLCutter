@@ -13,7 +13,7 @@ class GetCutURLSpec extends Specification {
     def publicApi
 
     void setup() {
-        def properties = new Properties("mdolata.com", 5, 3)
+        def properties = new Properties("dummy.address.com", 5, 3)
         def db = new PairDAO()
         def crudService = new CrudService(db)
         def stringGenerator = new RandomStringGenerator()
@@ -26,13 +26,13 @@ class GetCutURLSpec extends Specification {
     def "should return false when cut url does not exists"() {
         given:
         def url = "http://test1"
-        def expectedDefaultCutUrl = ""
+        def expectedDefaultCutUrl = "None"
 
         when:
         def result = publicApi.getCutURL(url)
 
         then:
-        result == expectedDefaultCutUrl
+        result.toString() == expectedDefaultCutUrl
     }
 
     def "should cut url true when exists"() {
@@ -44,6 +44,6 @@ class GetCutURLSpec extends Specification {
         def receivedCutURL = publicApi.getCutURL(url)
 
         then:
-        cutURL == receivedCutURL
+        receivedCutURL.toString() == "Some($cutURL)"
     }
 }

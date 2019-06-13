@@ -1,5 +1,6 @@
 package com.mdolata.urlCutter.services
 
+import arrow.core.getOrElse
 import com.mdolata.urlCutter.dao.Properties
 import com.mdolata.urlCutter.utils.UrlFormatter
 
@@ -10,15 +11,16 @@ class CutService(private val crudService: CrudService,
 
 
     fun cutURL(url: String): String {
-        return if (crudService.isURLExists(url)) {
-            crudService.getCutURL(url)
-        } else {
-            val uniqueCutURL = randomStringService.getUniqueCutURL(properties.attempts)
-            crudService.createNewPair(url, uniqueCutURL)
-            uniqueCutURL
-        }
+        return crudService.getCutURL(url)
+                .getOrElse {
+                    val uniqueCutURL = randomStringService.getUniqueCutURL(properties.attempts)
+                    crudService.createNewPair(url, uniqueCutURL)
+                    uniqueCutURL
+                }
     }
 
+    //TODO
+    // refactor is needed
     fun createCustomCutURL(url: String, customUrl: String): String {
 
         val cutURL = UrlFormatter.getCutURLFromPath(properties.base, customUrl)
