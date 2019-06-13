@@ -19,6 +19,8 @@ class CutService(private val crudService: CrudService,
                 }
     }
 
+    //TODO
+    // refactor is needed
     fun createCustomCutURL(url: String, customUrl: String): String {
 
         val cutURL = UrlFormatter.getCutURLFromPath(properties.base, customUrl)
