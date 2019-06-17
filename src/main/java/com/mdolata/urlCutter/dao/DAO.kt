@@ -8,6 +8,7 @@ class PairDAO {
 
     fun addNewPair(url: String, cutURL: String) = list.add(Pair(url, cutURL))
 
+    //TODO it could return few values
     fun getPairOf(url: String): Option<Pair> = Option.fromNullable(list.find { x -> x.url == url })
 
     fun getUrl(url: String): Option<String> = list.find { x -> x.url == url }

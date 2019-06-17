@@ -1,6 +1,8 @@
 package com.mdolata.urlCutter
 
+import arrow.core.Either
 import arrow.core.Option
+import com.mdolata.urlCutter.dao.CreationError
 import com.mdolata.urlCutter.services.CrudService
 import com.mdolata.urlCutter.services.CutService
 
@@ -14,7 +16,7 @@ class PublicApi(private val crudService: CrudService, private val cutService: Cu
 
     fun createCutURL(url: String): String = cutService.createCutURL(url)
 
-    fun createCustomCutURL(url: String, customUrl: String): String = cutService.createCustomCutURL(url, customUrl)
+    fun createCustomCutURL(url: String, customUrl: String): Either<CreationError, String> = cutService.createCustomCutURL(url, customUrl)
 
     fun getAllURLs(): List<String> = crudService.getAllURLs()
 
