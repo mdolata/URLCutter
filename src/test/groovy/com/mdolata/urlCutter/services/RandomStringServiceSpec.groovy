@@ -52,7 +52,7 @@ class RandomStringServiceSpec extends Specification {
 
         then:
         RuntimeException ex = thrown()
-        ex.message == "Creating cutURL failed"
+        ex.message == "Creating createCutURL failed"
 
         where:
         no | attempts

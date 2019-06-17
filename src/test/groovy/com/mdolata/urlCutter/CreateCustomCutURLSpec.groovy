@@ -41,7 +41,7 @@ class CreateCustomCutURLSpec extends Specification {
         given:
         def customCutURL = "simpleTest"
         def url = "test"
-        def createdCutURL = publicApi.cutURL(url)
+        def createdCutURL = publicApi.createCutURL(url)
 
         when:
         def createdCustomCutURL = publicApi.createCustomCutURL(url, customCutURL)
@@ -95,7 +95,7 @@ class CreateCustomCutURLSpec extends Specification {
     def "should throw exception and not create custom cut url when simple cut url exists"() {
         def url = "testURL"
         given:
-        String simpleCutURL = publicApi.cutURL(url)
+        String simpleCutURL = publicApi.createCutURL(url)
 
         def path = simpleCutURL.split("/")[1]
 

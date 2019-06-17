@@ -38,7 +38,7 @@ class IsURLExistsSpec extends Specification {
     def "should return true when url does exists"() {
         given:
         def url = "http://test1"
-        publicApi.cutURL(url)
+        publicApi.createCutURL(url)
 
         when:
         def isURLExists = publicApi.isURLExists(url)

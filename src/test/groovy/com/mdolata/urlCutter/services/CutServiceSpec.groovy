@@ -26,8 +26,8 @@ class CutServiceSpec extends Specification {
         def dummyUrl = "www.dummy.com"
 
         when:
-        def firstResult = cutService.cutURL(dummyUrl)
-        def secondResult = cutService.cutURL(dummyUrl)
+        def firstResult = cutService.createCutURL(dummyUrl)
+        def secondResult = cutService.createCutURL(dummyUrl)
 
         then:
         firstResult == secondResult
@@ -39,8 +39,8 @@ class CutServiceSpec extends Specification {
         def secondDummyUrl = "www.secondDummy.com"
 
         when:
-        def firstResult = cutService.cutURL(firstDummyUrl)
-        def secondResult = cutService.cutURL(secondDummyUrl)
+        def firstResult = cutService.createCutURL(firstDummyUrl)
+        def secondResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult != secondResult
@@ -52,15 +52,15 @@ class CutServiceSpec extends Specification {
         def secondDummyUrl = "www.secondDummy.com"
 
         when:
-        def firstResult = cutService.cutURL(firstDummyUrl)
-        def secondResult = cutService.cutURL(secondDummyUrl)
+        def firstResult = cutService.createCutURL(firstDummyUrl)
+        def secondResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult != secondResult
 
         when:
-        def thirdResult = cutService.cutURL(firstDummyUrl)
-        def fourthResult = cutService.cutURL(secondDummyUrl)
+        def thirdResult = cutService.createCutURL(firstDummyUrl)
+        def fourthResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult == thirdResult

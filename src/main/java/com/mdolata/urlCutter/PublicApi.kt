@@ -12,7 +12,7 @@ class PublicApi(private val crudService: CrudService, private val cutService: Cu
 
     fun isCutURLExists(cutURL: String): Boolean = crudService.isCutURLExists(cutURL)
 
-    fun cutURL(url: String): String = cutService.cutURL(url)
+    fun createCutURL(url: String): String = cutService.createCutURL(url)
 
     fun createCustomCutURL(url: String, customUrl: String): String = cutService.createCustomCutURL(url, customUrl)
 

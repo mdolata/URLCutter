@@ -34,7 +34,7 @@ class GetAllCutURLsSpec extends Specification {
 
     def "should return one element list when one url has been added"() {
         given:
-        publicApi.cutURL("test1")
+        publicApi.createCutURL("test1")
 
         when:
         def allURLs = publicApi.getAllCutURLs()
@@ -45,8 +45,8 @@ class GetAllCutURLsSpec extends Specification {
 
     def "should return one element list when url has been added twice"() {
         given:
-        publicApi.cutURL("test1")
-        publicApi.cutURL("test1")
+        publicApi.createCutURL("test1")
+        publicApi.createCutURL("test1")
 
         when:
         def allURLs = publicApi.getAllCutURLs()
@@ -59,7 +59,7 @@ class GetAllCutURLsSpec extends Specification {
         given:
         def n = 5
         for (int i = 0; i < n; i++) {
-            publicApi.cutURL("test$i")
+            publicApi.createCutURL("test$i")
         }
 
         when:
