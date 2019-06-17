@@ -37,7 +37,7 @@ class IsCutURLExistsSpec extends Specification {
     def "should return true when cut url exists"() {
         given:
         def url = "http://test1"
-        def cutURL = publicApi.cutURL(url)
+        def cutURL = publicApi.createCutURL(url)
 
         when:
         def isCutURLExists = publicApi.isCutURLExists(cutURL)

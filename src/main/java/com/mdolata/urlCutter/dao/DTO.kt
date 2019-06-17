@@ -8,3 +8,5 @@ data class Properties(val base: String,
 
 data class Pair(val url: String,
                 val cutURL: String)
+
+data class CreationError(val message: String)

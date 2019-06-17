@@ -38,7 +38,7 @@ class GetCutURLSpec extends Specification {
     def "should cut url true when exists"() {
         given:
         def url = "http://test1"
-        def cutURL = publicApi.cutURL(url)
+        def cutURL = publicApi.createCutURL(url)
 
         when:
         def receivedCutURL = publicApi.getCutURL(url)

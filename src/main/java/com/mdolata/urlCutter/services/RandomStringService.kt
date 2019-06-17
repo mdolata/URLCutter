@@ -16,7 +16,7 @@ class RandomStringService(private val crudService: CrudService,
         // then this method could easily take first from queue and move on
 
         if (maximumAttempts < 1) {
-            throw RuntimeException("Creating cutURL failed")
+            throw RuntimeException("Creating createCutURL failed")
         }
 
         val path = randomStringGenerator.getRandomString(properties.URLLength)

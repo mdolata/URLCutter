@@ -26,8 +26,8 @@ class CutServiceSpec extends Specification {
         def dummyUrl = "www.dummy.com"
 
         when:
-        def firstResult = cutService.cutURL(dummyUrl)
-        def secondResult = cutService.cutURL(dummyUrl)
+        def firstResult = cutService.createCutURL(dummyUrl)
+        def secondResult = cutService.createCutURL(dummyUrl)
 
         then:
         firstResult == secondResult
@@ -39,8 +39,8 @@ class CutServiceSpec extends Specification {
         def secondDummyUrl = "www.secondDummy.com"
 
         when:
-        def firstResult = cutService.cutURL(firstDummyUrl)
-        def secondResult = cutService.cutURL(secondDummyUrl)
+        def firstResult = cutService.createCutURL(firstDummyUrl)
+        def secondResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult != secondResult
@@ -52,15 +52,15 @@ class CutServiceSpec extends Specification {
         def secondDummyUrl = "www.secondDummy.com"
 
         when:
-        def firstResult = cutService.cutURL(firstDummyUrl)
-        def secondResult = cutService.cutURL(secondDummyUrl)
+        def firstResult = cutService.createCutURL(firstDummyUrl)
+        def secondResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult != secondResult
 
         when:
-        def thirdResult = cutService.cutURL(firstDummyUrl)
-        def fourthResult = cutService.cutURL(secondDummyUrl)
+        def thirdResult = cutService.createCutURL(firstDummyUrl)
+        def fourthResult = cutService.createCutURL(secondDummyUrl)
 
         then:
         firstResult == thirdResult
@@ -77,7 +77,7 @@ class CutServiceSpec extends Specification {
         def result = cutService.createCustomCutURL(dummyUrl, dummyCutUrl)
 
         then:
-        result == expectedResult
+        result.toString() == right(expectedResult as String)
     }
 
     def "should return new custom cut url when url exists but cut url not "() {
@@ -92,13 +92,13 @@ class CutServiceSpec extends Specification {
         def firstResult = cutService.createCustomCutURL(dummyUrl, firstDummyCutUrl)
 
         then:
-        firstResult == firstExpectedResult
+        firstResult.toString() == right(firstExpectedResult as String)
 
         when:
         def secondResult = cutService.createCustomCutURL(dummyUrl, secondDummyCutUrl)
 
         then:
-        secondResult == secondExpectedResult
+        secondResult.toString() == right(secondExpectedResult as String)
     }
 
     def "should return already created custom cut url when a pair of url and cut url exists"() {
@@ -111,13 +111,13 @@ class CutServiceSpec extends Specification {
         def result = cutService.createCustomCutURL(dummyUrl, dummyCutUrl)
 
         then:
-        result == expectedResult
+        result.toString() == right(expectedResult as String)
 
         when:
         def result2 = cutService.createCustomCutURL(dummyUrl, dummyCutUrl)
 
         then:
-        result2 == expectedResult
+        result2.toString() == right(expectedResult as String)
     }
 
     def "should thrown exception when custom cut url is already created for another url"() {
@@ -131,13 +131,19 @@ class CutServiceSpec extends Specification {
         def result = cutService.createCustomCutURL(firstDummyUrl, dummyCutUrl)
 
         then:
-        result == expectedResult
+        result.toString() == right(expectedResult as String)
 
         when:
-        cutService.createCustomCutURL(secondDummyUrl, dummyCutUrl)
+        def result2 = cutService.createCustomCutURL(secondDummyUrl, dummyCutUrl)
 
         then:
-        RuntimeException ex = thrown()
-        ex.message == "cut url already exists"
+        result2.toString() == left("CreationError(message=Pair of ($secondDummyUrl, $expectedResult) already exists)")
+    }
+
+    String right(String s) {
+        return "Right(b=$s)"
+    }
+    String left(String s) {
+        return "Left(a=$s)"
     }
 }
